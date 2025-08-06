@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Safety Helmet 2.0 - Naavik Maritime Solutions</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Google Fonts - Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        /* Font Awesome CDN */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+        :root {
+            --primary-bg: #f8fafc; /* Lighter background */
+            --secondary-bg: #e2e8f0; /* Slightly darker secondary background */
+            --accent-blue: #0077b6; /* Vibrant blue */
+            --accent-green: #2d9d7c; /* Vibrant green */
+            --text-dark: #1a202c; /* Darker text for contrast */
+            --text-dim: #4a5568; /* Slightly lighter dim text */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Custom scrollbar for a sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--secondary-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #005f95;
+        }
+
+        /* Hero section dynamic background animation for light theme */
+        .hero-bg-animate {
+            background: radial-gradient(circle at 15% 25%, rgba(0, 119, 182, 0.1), transparent 30%),
+                        radial-gradient(circle at 85% 75%, rgba(45, 157, 124, 0.1), transparent 30%),
+                        linear-gradient(135deg, #e2e8f0 25%, #f8fafc 25%, #f8fafc 50%, #e2e8f0 50%, #e2e8f0 75%, #f8fafc 75%, #f8fafc 100%);
+            background-size: 40px 40px, auto, auto; /* Pattern size, gradient size, gradient size */
+            animation: movePattern 4s linear infinite, moveGradientLight 15s ease infinite;
+        }
+        @keyframes movePattern {
+            0% { background-position: 0 0, center, center; }
+            100% { background-position: 40px 40px, center, center; }
+        }
+        @keyframes moveGradientLight {
+            0% { background-position: center top, center bottom; }
+            50% { background-position: center bottom, center top; }
+            100% { background-position: center top, center bottom; }
+        }
+
+        /* Card hover effect */
+        .hover-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 119, 182, 0.25); /* Stronger shadow on hover */
+        }
+
+        /* Button hover effect */
+        .btn-hover {
+            transition: all 0.3s ease;
+        }
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 119, 182, 0.4); /* Stronger shadow on hover */
+        }
+
+        /* Collapsible panel styles */
+        .collapsible-panel {
+            transition: all 0.3s ease;
+        }
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+        }
+        .collapsible-content.open {
+            max-height: 1000px; /* Large enough value to handle content */
+        }
+        .collapsible-toggle i {
+            transition: transform 0.3s ease;
+        }
+        .collapsible-toggle.active i {
+            transform: rotate(180deg);
+        }
+
+        /* Glow effect for hero elements */
+        .hero-glow {
+            text-shadow: 0 0 8px rgba(0, 119, 182, 0.6), 0 0 15px rgba(0, 119, 182, 0.4);
+        }
+        .hero-img-glow {
+            filter: drop-shadow(0 0 15px rgba(0, 119, 182, 0.5)) drop-shadow(0 0 30px rgba(45, 157, 124, 0.3));
+        }
+
+        /* Section dividers with subtle curve */
+        .section-divider-top {
+            position: relative;
+            height: 50px; /* Adjust height as needed */
+            background: var(--primary-bg);
+        }
+        .section-divider-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--secondary-bg);
+            border-radius: 0 0 50% 50% / 0 0 100% 100%;
+            transform: translateY(-50%);
+        }
+        .section-divider-bottom {
+            position: relative;
+            height: 50px; /* Adjust height as needed */
+            background: var(--secondary-bg);
+        }
+        .section-divider-bottom::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-bg);
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            transform: translateY(50%);
+        }
+    </style>
+</head>
+<body class="bg-primary-bg text-text-dark antialiased overflow-x-hidden">
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-primary-bg/80 backdrop-blur-md shadow-lg">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <img src="images/nms.png" alt="Naavik Logo" class="h-16 w-16 rounded-xl shadow-md border-2 border-yellow-400/50" onerror="this.onerror=null;this.src='https://placehold.co/64x64/FFD700/03001C?text=N';">
+                <span class="text-3xl font-bold text-accent-blue tracking-wide">Naavik</span>
+                <span class="hidden sm:inline text-3xl text-text-dim">Maritime Solutions</span>
+            </div>
+            
+            <!-- CTA Buttons & Collapsible Navigation -->
+            <div class="flex items-center space-x-4">
+                <a href="#collaborate" class="hidden md:inline-block px-4 py-2 text-sm font-semibold text-accent-blue hover:text-text-dark rounded-full transition-colors">Partner with Us</a>
+                <a href="#contact-form" class="hidden md:inline-block px-5 py-2 text-sm font-bold text-blue-600 bg-accent-blue rounded-full btn-hover shadow-lg">Book a Demo</a>
+                <button id="nav-toggle" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-blue">
+                    <i class="fas fa-bars text-xl text-accent-blue"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Navigation Menu -->
+        <div id="nav-menu" class="hidden md:hidden flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-8 top-16 left-0 w-full bg-primary-bg md:bg-transparent shadow-lg md:shadow-none p-6 md:p-0">
+            <a href="#problem" class="text-text-dark hover:text-accent-blue transition-colors font-medium text-center">Problem</a>
+            <a href="#solution" class="text-text-dark hover:text-accent-blue transition-colors font-medium text-center">Solution</a>
+            <a href="#features" class="text-text-dark hover:text-accent-blue transition-colors font-medium text-center">Features</a>
+            <a href="#how-it-works" class="text-text-dark hover:text-accent-blue transition-colors font-medium text-center">How It Works</a>
+            <a href="#team" class="text-text-dark hover:text-accent-blue transition-colors font-medium text-center">Team</a>
+            <a href="#collaborate" class="text-text-dark hover:text-accent-blue transition-colors font-medium text-center">Partner</a>
+            <a href="#contact-form" class="text-text-dark hover:text-accent-blue transition-colors font-medium text-center">Contact</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-bg-animate relative h-screen flex items-center pt-24 md:pt-0 overflow-hidden px-4">
+        <div class="container mx-auto text-center lg:text-left z-10 py-16">
+            <div class="lg:flex lg:items-center lg:justify-between">
+                <div class="lg:w-1/2">
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-text-dark drop-shadow-xl hero-glow">
+                        🚨 Smart Safety Helmet 2.0 for Seafarers
+                    </h1>
+                    <h2 class="mt-4 text-xl sm:text-2xl lg:text-3xl font-light text-text-dim max-w-4xl lg:max-w-none">
+                        “AI-integrated protection for the modern maritime workforce.”
+                    </h2>
+                    <p class="mt-6 text-lg sm:text-xl text-text-dark max-w-4xl lg:max-w-none">
+                        From the award-winning prototype to a future-ready AI safety platform — built to save lives, enhance efficiency, and set new safety standards at sea.
+                    </p>
+                    <div class="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
+                        <a href="#collaborate" class="btn-hover px-6 py-3 bg-accent-blue text-blue-600 font-bold rounded-full shadow-lg">
+                            Become a Partner
+                        </a>
+                        <a href="https://www.jmr.unican.es/jmr/article/view/742" class="btn-hover px-6 py-3 bg-text-dark text-blue-600 font-bold rounded-full shadow-lg">
+                            Download Research Paper
+                        </a>
+                        <a href="#contact-form" class="btn-hover px-6 py-3 border-2 border-accent-blue text-accent-blue font-bold rounded-full shadow-lg hover:bg-accent-blue hover:text-white">
+                            Book a Demo / Inquiry
+                        </a>
+                        <a href="https://www.amazon.ca/Shipping-Towards-Automation-Steps-Safety/dp/9994989197" class="btn-hover px-6 py-3 border-2 border-accent-blue text-accent-blue font-bold rounded-full shadow-lg hover:bg-accent-blue hover:text-white">
+                            Buy our Book
+                        </a>
+                    </div>
+                </div>
+                <!-- Helmet Image Placeholder -->
+                <div class="lg:w-1/2 mt-16 lg:mt-0 flex justify-center lg:justify-end">
+                    <img src="images/3dh2.jpg" alt="3D Rotating Helmet Model" class="mx-auto rounded-3xl w-full max-w-md lg:max-w-xl animate-pulse-slow hero-img-glow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- PROBLEM STATEMENT SECTION -->
+    <section id="problem" class="py-24 px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center text-text-dark">Why Traditional Helmets Aren’t Enough at Sea</h3>
+            <p class="mt-4 text-lg text-text-dim text-center max-w-3xl mx-auto">
+                The maritime industry faces critical safety challenges that demand a new approach to personal protective equipment.
+            </p>
+            <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-exclamation-triangle fa-3x text-accent-blue"></i>
+                    <h4 class="mt-4 text-2xl font-bold text-text-dark">88%</h4>
+                    <p class="mt-2 text-text-dim">of accidents onboard are due to human error.</p>
+                </div>
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-clock fa-3x text-accent-blue"></i>
+                    <h4 class="mt-4 text-2xl font-bold text-text-dark">Detection Delays</h4>
+                    <p class="mt-2 text-text-dim">in man-overboard incidents can cost lives.</p>
+                </div>
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-ban fa-3x text-accent-blue"></i>
+                    <h4 class="mt-4 text-2xl font-bold text-text-dark">Discomfort</h4>
+                    <p class="mt-2 text-text-dim">leads to non-compliance with safety protocols.</p>
+                </div>
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-database fa-3x text-accent-blue"></i>
+                    <h4 class="mt-4 text-2xl font-bold text-text-dark">Lack of Data</h4>
+                    <p class="mt-2 text-text-dim">Current systems lack real-time health and location data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SOLUTION OVERVIEW SECTION -->
+    <section id="solution" class="py-24 bg-secondary-bg px-4">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold text-text-dark">Introducing the Smart Safety Helmet</h3>
+            <p class="mt-4 text-lg text-text-dim max-w-3xl mx-auto">
+                More than just protection, our helmet is a dynamic, responsive system designed for modern maritime safety.
+            </p>
+            <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="hover-card p-6 bg-primary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-gas-pump fa-3x text-accent-green"></i>
+                    <p class="mt-4 text-xl font-bold text-text-dark">Detects alcohol & toxic gases in real time.</p>
+                </div>
+                <div class="hover-card p-6 bg-primary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-heartbeat fa-3x text-accent-green"></i>
+                    <p class="mt-4 text-xl font-bold text-text-dark">Monitors heart rate and vitals.</p>
+                </div>
+                <div class="hover-card p-6 bg-primary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-walking fa-3x text-accent-green"></i>
+                    <p class="mt-4 text-xl font-bold text-text-dark">Identifies falls & man-overboard incidents instantly.</p>
+                </div>
+                <div class="hover-card p-6 bg-primary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-map-marker-alt fa-3x text-accent-green"></i>
+                    <p class="mt-4 text-xl font-bold text-text-dark">Sends GPS-based alerts to the bridge.</p>
+                </div>
+                <div class="hover-card p-6 bg-primary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-ship fa-3x text-accent-green"></i>
+                    <p class="mt-4 text-xl font-bold text-text-dark">Designed for rugged marine environments.</p>
+                </div>
+                <div class="hover-card p-6 bg-primary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-check-circle fa-3x text-accent-green"></i>
+                    <p class="mt-4 text-xl font-bold text-text-dark">Confirms helmet compliance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT THE PROJECT: PAST - PRESENT - FUTURE SECTIONS -->
+    <section id="about" class="py-24 px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center text-text-dark">The Smart Helmet Journey</h3>
+            <p class="mt-4 text-lg text-text-dim text-center max-w-3xl mx-auto">
+                From a groundbreaking academic project to a commercial-ready AI safety platform.
+            </p>
+
+            <!-- Collapsible Panel for PAST -->
+            <div class="mt-12 bg-secondary-bg p-6 rounded-2xl border border-gray-300">
+                <button class="collapsible-toggle w-full flex justify-between items-center text-left py-2">
+                    <span class="text-xl font-bold text-text-dark">Past: Origin and Conceptualization (2023 Prototype)</span>
+                    <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                </button>
+                <div class="collapsible-content mt-4">
+                    <div class="p-4 border-l-4 border-accent-blue pl-4 space-y-4">
+                        <p class="text-text-dim">
+                            The Smart Safety Helmet for seafarers was originally conceived as a solution to enhance safety onboard ships. The main aim was to address man overboard incidents, improve health monitoring, and provide real-time alerts to the crew.
+                        </p>
+                        <h4 class="text-lg font-semibold text-text-dark">Development and Early Prototype (2023)</h4>
+                        <p class="text-text-dim">
+                            The prototype was first developed as part of a college project at TS Chanakya. A research paper titled "Innovative Design Idea for Smart Safety Helmet for Seafarers" was published in JMR Publications, detailing the concept and initial testing.
+                        </p>
+                        <h5 class="font-bold text-text-dark">Technology Used:</h5>
+                        <ul class="list-disc list-inside text-text-dim ml-4">
+                            <li><span class="font-semibold text-text-dark">Arduino Uno:</span> Microcontroller for processing sensor data.</li>
+                            <li><span class="font-semibold text-text-dark">MQ3 Alcohol sensor:</span> For detecting alcohol presence in the wearer’s breath.</li>
+                            <li><span class="font-semibold text-text-dark">Pulse sensor:</span> To monitor heart rate.</li>
+                            <li><span class="font-semibold text-text-dark">Accelerometer:</span> To detect sudden movement or falls.</li>
+                            <li><span class="font-semibold text-text-dark">GPS module:</span> To track the wearer’s real-time location.</li>
+                            <li><span class="font-semibold text-text-dark">Water sensors:</span> For detecting immersion in man overboard situations.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collapsible Panel for PRESENT -->
+            <div class="mt-8 bg-secondary-bg p-6 rounded-2xl border border-gray-300">
+                <button class="collapsible-toggle w-full flex justify-between items-center text-left py-2">
+                    <span class="text-xl font-bold text-text-dark">Present: Current Developments (Helmet 2.0)</span>
+                    <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                </button>
+                <div class="collapsible-content mt-4">
+                    <div class="p-4 border-l-4 border-accent-blue pl-4 space-y-4">
+                        <p class="text-text-dim">
+                            Naavik Maritime Solutions has started to actively work on Helmet 2.0, which aims to build on the 2023 prototype by enhancing its features, integrating more advanced technologies, and making it more suitable for real-world applications.
+                        </p>
+                        <h4 class="text-lg font-semibold text-text-dark">New Features in Helmet 2.0:</h4>
+                        <ul class="list-disc list-inside text-text-dim ml-4">
+                            <li><span class="font-semibold text-text-dark">AI Integration:</span> Using artificial intelligence for fatigue detection and advanced health monitoring.</li>
+                            <li><span class="font-semibold text-text-dark">Improved Sensors:</span> Next-generation sensors that are more accurate and durable.</li>
+                            <li><span class="font-semibold text-text-dark">Enhanced GPS:</span> Real-time location data transmitted through 5G or satellite communication.</li>
+                            <li><span class="font-semibold text-text-dark">Health Monitoring:</span> Heart rate variability, blood oxygen levels, and body temperature sensors.</li>
+                            <li><span class="font-semibold text-text-dark">Battery Life:</span> A long-lasting battery with solar charging capabilities.</li>
+                            <li><span class="font-semibold text-text-dark">Wireless Communication:</span> 5G and IoT integration for faster, more reliable communication.</li>
+                            <li><span class="font-semibold text-text-dark">Voice Assistance:</span> Integration of voice command capabilities for hands-free operation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collapsible Panel for FUTURE -->
+            <div class="mt-8 bg-secondary-bg p-6 rounded-2xl border border-gray-300">
+                <button class="collapsible-toggle w-full flex justify-between items-center text-left py-2">
+                    <span class="text-xl font-bold text-text-dark">Future: The Vision for Smart Safety Helmets</span>
+                    <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                </button>
+                <div class="collapsible-content mt-4">
+                    <div class="p-4 border-l-4 border-accent-blue pl-4 space-y-4">
+                        <p class="text-text-dim">
+                            The next phase for the Smart Safety Helmet involves incorporating full AI capabilities to provide predictive safety measures and integrating with smart maritime systems.
+                        </p>
+                        <h4 class="text-lg font-semibold text-text-dark">Key Future Developments:</h4>
+                        <ul class="list-disc list-inside text-text-dim ml-4">
+                            <li><span class="font-semibold text-text-dark">Fully AI-Integrated Helmets:</span> AI will continuously monitor data to assess risk in real-time and predict when a seafarer might be at risk.</li>
+                            <li><span class="font-semibold text-text-dark">Integration with Smart Maritime Systems:</span> Each helmet will be part of a larger interconnected network for real-time crew health monitoring and data analysis.</li>
+                            <li><span class="font-semibold text-text-dark">Augmented Reality (AR) Displays:</span> Helmets could come with AR displays for showing real-time data or instructions.</li>
+                            <li><span class="font-semibold text-text-dark">Autonomous Search and Rescue:</span> The helmet's distress signal could trigger an autonomous search mission.</li>
+                            <li><span class="font-semibold text-text-dark">Regulatory Compliance:</span> Future versions will comply with new regulations and industry standards like SOLAS and ISM.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES IN DETAIL SECTION -->
+    <section id="features" class="py-24 bg-primary-bg px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center text-text-dark">Features in Detail</h3>
+            <p class="mt-4 text-lg text-text-dim text-center max-w-3xl mx-auto">
+                A comprehensive look at the cutting-edge technology inside the helmet.
+            </p>
+            <div class="mt-12 space-y-8">
+                <!-- Sensor Modules Section -->
+                <div class="bg-secondary-bg p-6 rounded-2xl shadow-xl border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center text-left py-2">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-microchip fa-3x text-accent-blue"></i>
+                            <span class="text-xl font-bold text-text-dark">A. Sensor Modules</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content mt-4">
+                        <div class="p-4 border-l-4 border-accent-blue pl-4 space-y-4">
+                            <ul class="list-disc list-inside text-text-dim ml-4">
+                                <li>
+                                    <span class="font-semibold text-text-dark">Alcohol Sensor (MQ-3):</span> Detects alcohol vapor via chemiresistive tech. Alerts bridge in real-time upon threshold breach.
+                                </li>
+                                <li>
+                                    <span class="font-semibold text-text-dark">Gas Sensor (MQ-135):</span> Detects Ammonia, Methane, Benzene, CO, etc. Prevents hazardous gas exposure fatalities.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pulse Sensor Section -->
+                <div class="bg-secondary-bg p-6 rounded-2xl shadow-xl border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center text-left py-2">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-heartbeat fa-3x text-accent-blue"></i>
+                            <span class="text-xl font-bold text-text-dark">B. Pulse Sensor (MAX30102)</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content mt-4">
+                        <div class="p-4 border-l-4 border-accent-blue pl-4 space-y-4">
+                            <ul class="list-disc list-inside text-text-dim ml-4">
+                                <li>Measures real-time BPM using PPG technique.</li>
+                                <li>Confirms helmet compliance.</li>
+                                <li>Triggers alerts during low/high pulse abnormalities.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Accelerometer Section -->
+                <div class="bg-secondary-bg p-6 rounded-2xl shadow-xl border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center text-left py-2">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-tachometer-alt fa-3x text-accent-blue"></i>
+                            <span class="text-xl font-bold text-text-dark">C. Accelerometer (ADXL335)</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content mt-4">
+                        <div class="p-4 border-l-4 border-accent-blue pl-4 space-y-4">
+                            <ul class="list-disc list-inside text-text-dim ml-4">
+                                <li>Detects sudden impacts/falls.</li>
+                                <li>Uses axis-wise tilt sensing.</li>
+                                <li>Activates man-overboard alert protocol.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- GPS Module Section -->
+                <div class="bg-secondary-bg p-6 rounded-2xl shadow-xl border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center text-left py-2">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-map-marker-alt fa-3x text-accent-blue"></i>
+                            <span class="text-xl font-bold text-text-dark">D. GPS Module</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content mt-4">
+                        <div class="p-4 border-l-4 border-accent-blue pl-4 space-y-4">
+                            <ul class="list-disc list-inside text-text-dim ml-4">
+                                <li>Pinpoints seafarer location in real time.</li>
+                                <li>Transmits coordinates upon emergency.</li>
+                                <li>Aids rescue team with direction, speed, and location.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Water Sensor Section -->
+                <div class="bg-secondary-bg p-6 rounded-2xl shadow-xl border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center text-left py-2">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-water fa-3x text-accent-blue"></i>
+                            <span class="text-xl font-bold text-text-dark">E. Water Sensor</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content mt-4">
+                        <div class="p-4 border-l-4 border-accent-blue pl-4 space-y-4">
+                            <ul class="list-disc list-inside text-text-dim ml-4">
+                                <li>Confirms water contact for man-overboard validation.</li>
+                                <li>Prevents false positives from onboard falls.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Control & Connectivity Section -->
+                <div class="bg-secondary-bg p-6 rounded-2xl shadow-xl border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center text-left py-2">
+                        <div class="flex items-center space-x-4">
+                            <i class="fas fa-wifi fa-3x text-accent-blue"></i>
+                            <span class="text-xl font-bold text-text-dark">F. Control & Connectivity</span>
+                        </div>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content mt-4">
+                        <div class="p-4 border-l-4 border-accent-blue pl-4 space-y-4">
+                            <ul class="list-disc list-inside text-text-dim ml-4">
+                                <li>Based on Arduino Uno (ATmega328P) for processing.</li>
+                                <li>Integrated with Wi-Fi / Bluetooth (ESP8266).</li>
+                                <li>Kill-switch for manual override of false alerts.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section id="how-it-works" class="py-24 bg-secondary-bg px-4">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold text-text-dark">How It Works</h3>
+            <p class="mt-4 text-lg text-text-dim max-w-3xl mx-auto">
+                A simple, yet powerful, process to ensure immediate response and safety.
+            </p>
+            <div class="mt-12 bg-primary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                <p class="text-xl font-medium text-text-dark mb-6">
+                    Helmet is worn &rarr; Alcohol check runs &rarr; Pulse + gas sensors activate &rarr; Accelerometer monitors continuously &rarr; Fall detected? &rarr; GPS + water sensor confirm &rarr; Alert sent to Bridge + LEDs & buzzers activated &rarr; Kill switch available if false.
+                </p>
+                <div class="relative">
+                    <img src="images/f1.png" alt="Flowchart of Event Trigger & Sensor Activation" class="w-full h-auto rounded-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROTOTYPE TEST RESULTS SECTION -->
+    <section id="test-results" class="py-24 px-4">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold text-text-dark">Prototype Test Results</h3>
+            <p class="mt-4 text-lg text-text-dim max-w-3xl mx-auto">
+                Data validated under controlled campus test conditions to prove the prototype's functionality.
+            </p>
+            <div class="mt-12 bg-secondary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider">
+                            <tr class="border-b border-gray-300 text-text-dim">
+                                <th scope="col" class="px-6 py-3">Data Point</th>
+                                <th scope="col" class="px-6 py-3">Test Result</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-text-dark">
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Pulse rates</td>
+                                <td class="px-6 py-4">Accurate within a 2 BPM margin of error.</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Direction of fall</td>
+                                <td class="px-6 py-4">95% accuracy in detecting fall direction (x, y, z axis).</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">GPS coordinates</td>
+                                <td class="px-6 py-4">Location pinpointed within a 5-meter radius.</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Speed & acceleration data</td>
+                                <td class="px-6 py-4">Real-time data validated with physical measurements.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="relative group hover-card">
+                    <h4 class="text-xl font-bold text-text-dark">Real-time smartphone output:</h4>
+                    <img src="images/m1.png" alt="Prototype Image 1" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Prototype & Components</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/o2 (1).png" alt="Prototype Image 2" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">TS Chanakya Lab Shots</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/o2 (2).png" alt="Award Ceremony" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Testimonials from Cadets</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- ENGINEERING & DESIGN SECTION -->
+    <section id="engineering" class="py-24 bg-primary-bg px-4">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold text-text-dark">Engineering & Design</h3>
+            <p class="mt-4 text-lg text-text-dim max-w-3xl mx-auto">
+                Built for durability and comfort without compromising on safety.
+            </p>
+            <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-compact-disc fa-3x text-accent-blue"></i>
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Compact Form Factor</h4>
+                    <p class="mt-2 text-text-dim">No compromise on safety integrity, designed to be lightweight and comfortable.</p>
+                </div>
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-shield-alt fa-3x text-accent-blue"></i>
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Waterproof & Rugged</h4>
+                    <p class="mt-2 text-text-dim">Built to withstand harsh marine environments, from saltwater to extreme temperatures.</p>
+                </div>
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-cubes fa-3x text-accent-blue"></i>
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Modular Design</h4>
+                    <p class="mt-2 text-text-dim">Face shield compatibility and customizable for different applications.</p>
+                </div>
+            </div>
+
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="relative group hover-card">
+                    <img src="images/3dh.jpg" alt="Prototype Image 1" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Malini V Shankar, I.A.S. (Retd.) Hon'ble Vice Chancellor</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/3dh3.png" alt="Prototype Image 2" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">INMEX SMM 2023 Award Ceremony</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/3dh2.jpg" alt="Award Ceremony" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Minister of State for Ports, Shipping and Waterways</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- COMPLIANCE & STANDARDS SECTION -->
+    <section id="compliance" class="py-24 bg-secondary-bg px-4">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold text-text-dark">Compliance & Standards</h3>
+            <p class="mt-4 text-lg text-text-dim max-w-3xl mx-auto">
+                Our technology is being developed in line with key international safety standards.
+            </p>
+            <div class="mt-12 flex flex-wrap justify-center items-center gap-12">
+                <div class="text-center">
+                    <i class="fas fa-gavel fa-4x text-accent-green"></i>
+                    <p class="mt-2 text-text-dim font-semibold">ILO 2019</p>
+                    <p class="text-text-dark font-bold">Safety Practices for Shipbuilding</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-ship fa-4x text-accent-green"></i>
+                    <p class="mt-2 text-text-dim font-semibold">IMO</p>
+                    <p class="text-text-dark font-bold">Safety Management Code</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-file-shield fa-4x text-accent-green"></i>
+                    <p class="mt-2 text-text-dim font-semibold">SHM ShipCare</p>
+                    <p class="text-text-dark font-bold">Personal Safety Guidelines</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USE CASES SECTION -->
+    <section id="use-cases" class="py-24 px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center text-text-dark">Use Cases</h3>
+            <p class="mt-4 text-lg text-text-dim text-center max-w-3xl mx-auto">
+                Protecting seafarers across diverse and demanding maritime environments.
+            </p>
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Use Case Card 1 -->
+                <div class="hover-card bg-secondary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                    <i class="fas fa-ship fa-3x text-accent-green"></i>
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Onboard Ships</h4>
+                    <p class="mt-2 text-text-dim">Ensuring the safety of crew members on the deck, engine room, and throughout the vessel.</p>
+                </div>
+                <!-- Use Case Card 2 -->
+                <div class="hover-card bg-secondary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                    <i class="fas fa-tools fa-3x text-accent-green"></i>
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Dry Dock Repairs</h4>
+                    <p class="mt-2 text-text-dim">Providing critical monitoring for personnel during maintenance and repair operations.</p>
+                </div>
+                <!-- Use Case Card 3 -->
+                <div class="hover-card bg-secondary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                    <i class="fas fa-box fa-3x text-accent-green"></i>
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Cargo Handling Operations</h4>
+                    <p class="mt-2 text-text-dim">Enhancing safety for dock workers and stevedores in port and loading terminals.</p>
+                </div>
+                <!-- Use Case Card 4 -->
+                <div class="hover-card bg-secondary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                    <i class="fas fa-door-closed fa-3x text-accent-green"></i>
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Enclosed Space Entry Monitoring</h4>
+                    <p class="mt-2 text-text-dim">Detecting toxic gases and monitoring vitals in high-risk confined spaces.</p>
+                </div>
+                 <!-- Use Case Card 5 -->
+                 <div class="hover-card bg-secondary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                    <i class="fas fa-ambulance fa-3x text-accent-green"></i>
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Emergency Response Teams</h4>
+                    <p class="mt-2 text-text-dim">Provides critical data and location tracking for rescue and emergency teams.</p>
+                </div>
+                <!-- Use Case Card 6 -->
+                <div class="hover-card bg-secondary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                    <i class="fas fa-industry fa-3x text-accent-green"></i>
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Other Industries</h4>
+                    <p class="mt-2 text-text-dim">Applicable to mining, railway, oil & gas fields, and other industrial settings.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL SPECIFICATIONS TABLE SECTION -->
+    <section id="tech-spec-table" class="py-24 bg-secondary-bg px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center text-text-dark">Technical Specifications</h3>
+            <p class="mt-4 text-lg text-text-dim text-center max-w-3xl mx-auto">
+                A detailed breakdown of the components and their functions.
+            </p>
+            <div class="mt-12 bg-primary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-left text-sm whitespace-nowrap">
+                        <thead class="uppercase tracking-wider">
+                            <tr class="border-b border-gray-300 text-text-dim">
+                                <th scope="col" class="px-6 py-3">Component</th>
+                                <th scope="col" class="px-6 py-3">Model</th>
+                                <th scope="col" class="px-6 py-3">Function</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-text-dark">
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Microcontroller</td>
+                                <td class="px-6 py-4">Arduino Uno (ATmega328P)</td>
+                                <td class="px-6 py-4">Processing Unit</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Alcohol Sensor</td>
+                                <td class="px-6 py-4">MQ3</td>
+                                <td class="px-6 py-4">Breath analysis</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Gas Sensor</td>
+                                <td class="px-6 py-4">MQ135</td>
+                                <td class="px-6 py-4">Toxic gas detection</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Pulse Sensor</td>
+                                <td class="px-6 py-4">MAX30102</td>
+                                <td class="px-6 py-4">Heart rate monitoring</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Accelerometer</td>
+                                <td class="px-6 py-4">ADXL335</td>
+                                <td class="px-6 py-4">Fall/motion detection</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">GPS Module</td>
+                                <td class="px-6 py-4">NEO-6MV2</td>
+                                <td class="px-6 py-4">Real-time location</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Communication</td>
+                                <td class="px-6 py-4">ESP8266</td>
+                                <td class="px-6 py-4">Wi-Fi/Bluetooth</td>
+                            </tr>
+                            <tr class="border-b border-gray-300">
+                                <td class="px-6 py-4 font-medium">Power</td>
+                                <td class="px-6 py-4">Li-Po 9V Battery</td>
+                                <td class="px-6 py-4">Power Supply</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US SECTION -->
+    <section id="why-choose-us" class="py-24 px-4">
+        <div class="container mx-auto text-center">
+            <h3 class="text-4xl font-bold text-text-dark">Why Choose Us</h3>
+            <p class="mt-4 text-lg text-text-dim max-w-3xl mx-auto">
+                We're more than a product; we're a mission to revolutionize maritime safety.
+            </p>
+            <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-university fa-3x text-accent-green"></i>
+                    <p class="mt-4 text-xl font-bold text-text-dark">Academic Collaboration</p>
+                    <p class="mt-2 text-text-dim">Developed in collaboration with Indian Maritime University.</p>
+                </div>
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-flask fa-3x text-accent-green"></i>
+                    <p class="mt-4 text-xl font-bold text-text-dark">Validated Results</p>
+                    <p class="mt-2 text-text-dim">Tested under controlled conditions with documented results.</p>
+                </div>
+                <div class="hover-card p-6 bg-secondary-bg rounded-xl shadow-xl border border-gray-300">
+                    <i class="fas fa-chart-area fa-3x text-accent-green"></i>
+                    <p class="mt-4 text-xl font-bold text-text-dark">Scalable Solution</p>
+                    <p class="mt-2 text-text-dim">Designed to be scalable for commercial fleets, ports & defense.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RECOGNITION & CREDIBILITY SECTION -->
+    <section id="recognition" class="py-24 bg-primary-bg px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center text-text-dark">Recognition & Credibility</h3>
+            <p class="mt-4 text-lg text-text-dim text-center max-w-3xl mx-auto">
+                Our prototype has been recognized in leading maritime forums and publications.
+            </p>
+            <div class="mt-12 flex flex-wrap justify-center items-center gap-12">
+                <div class="text-center">
+                    <i class="fas fa-trophy fa-4x text-yellow-500"></i>
+                    <p class="mt-2 text-text-dim font-semibold">INMEX SMM 2023</p>
+                    <p class="text-text-dark font-bold">1st Prize Winner</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-newspaper fa-4x text-accent-blue"></i>
+                    <p class="mt-2 text-text-dim font-semibold">JMR Publication</p>
+                    <a href="#" class="text-accent-blue hover:underline">Read Research Paper</a>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-book fa-4x text-accent-green"></i>
+                    <p class="mt-2 text-text-dim font-semibold">Featured in Book</p>
+                    <p class="text-text-dark font-bold">Shipping Towards Automation</p>
+                </div>
+            </div>
+            <p class="mt-12 text-center text-lg text-text-dim">
+                Supported by: <span class="font-bold text-text-dark">TS Chanakya, Naavik, Maritime SMEs</span><br>
+                Collaborators: <span class="font-bold text-text-dark">R&D Labs, Maritime Training Institutes</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- CALL FOR COLLABORATIONS SECTION -->
+    <section id="collaborate" class="py-24 text-center bg-secondary-bg px-4">
+        <div class="container mx-auto">
+            <h3 class="text-5xl font-bold text-text-dark leading-tight max-w-4xl mx-auto">
+                Join us in scaling India’s first smart maritime safety gear.
+            </h3>
+            <p class="mt-6 text-xl text-text-dim max-w-3xl mx-auto">
+                We are actively seeking industry partners, sponsors, and collaborators to make the oceans safer.
+            </p>
+            <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <div>
+                    <h4 class="text-2xl font-bold text-text-dark">We Are Actively Seeking:</h4>
+                    <ul class="mt-4 text-text-dim list-disc list-inside">
+                        <li>Industry Collaborators (Shipping, Port Ops, Oil & Gas)</li>
+                        <li>Academic / Research Institutions</li>
+                        <li>CSR Supporters & Innovation Grant Providers</li>
+                        <li>Pilot Deployment Partners (Fleets, Institutes)</li>
+                        <li>Technology Enablers (IoT, Embedded Systems)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-2xl font-bold text-text-dark">Why Collaborate?</h4>
+                    <ul class="mt-4 text-text-dim list-disc list-inside">
+                        <li>Be part of a life-saving initiative</li>
+                        <li>Fulfill ESG, Safety, and CSR mandates</li>
+                        <li>Gain early access to revolutionary tech</li>
+                        <li>Co-brand and feature in global safety events</li>
+                    </ul>
+                </div>
+                <div class="flex items-center justify-center">
+                    <a href="#contact-form" class="btn-hover px-8 py-4 bg-accent-blue text-blue-600 font-bold rounded-full shadow-lg">
+                        Apply to Collaborate
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEVELOPMENT TIMELINE & ROADMAP SECTION -->
+    <section id="roadmap" class="py-24 px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center text-text-dark">Development Timeline & Roadmap</h3>
+            <div class="relative mt-12">
+                <!-- Timeline line -->
+                <div class="absolute left-1/2 -translate-x-1/2 w-1 h-full bg-accent-blue opacity-50 hidden md:block"></div>
+                <!-- Timeline items -->
+                <div class="space-y-12">
+                    <!-- Q1 2023 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent-blue border-4 border-primary-bg z-10 hidden md:block"></div>
+                        <div class="w-full md:w-1/2 md:pr-12 md:text-right">
+                            <h4 class="text-2xl font-bold text-text-dark">Q1 2023</h4>
+                            <p class="text-text-dim">Prototype Developed (TS Chanakya)</p>
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-12"></div>
+                    </div>
+                    <!-- Q3 2023 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent-blue border-4 border-primary-bg z-10 hidden md:block"></div>
+                        <div class="w-full md:w-1/2 md:pr-12 md:order-2 md:text-left">
+                            <h4 class="text-2xl font-bold text-text-dark mb-6"> Q3 2023</h4>
+                            <p class="text-text-dim">Won INMEX Award + Paper Published</p>
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-12 md:order-1"></div>
+                    </div>
+                    <!-- Q2 2024 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent-blue border-4 border-primary-bg z-10 hidden md:block"></div>
+                        <div class="w-full md:w-1/2 md:pr-12 md:text-right">
+                            <h4 class="text-2xl font-bold text-text-dark">Q2 2024</h4>
+                            <p class="text-text-dim">AI Vision System R&D</p>
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-12"></div>
+                    </div>
+                    <!-- Q3 2024 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent-blue border-4 border-primary-bg z-10 hidden md:block"></div>
+                        <div class="w-full md:w-1/2 md:pr-12 md:order-2 md:text-left">
+                            <h4 class="text-2xl font-bold text-text-dark">Q3 2024</h4>
+                            <p class="text-text-dim">Industry Trials & Feedback</p>
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-12 md:order-1"></div>
+                    </div>
+                     <!-- Q1 2025 -->
+                     <div class="relative flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent-blue border-4 border-primary-bg z-10 hidden md:block"></div>
+                        <div class="w-full md:w-1/2 md:pr-12 md:text-right">
+                            <h4 class="text-2xl font-bold text-text-dark">Q1 2025</h4>
+                            <p class="text-text-dim">Smart Helmet 2.0 Beta</p>
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-12"></div>
+                    </div>
+                    <!-- Q2 2025 -->
+                    <div class="relative flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
+                        <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-accent-blue border-4 border-primary-bg z-10 hidden md:block"></div>
+                        <div class="w-full md:w-1/2 md:pr-12 md:order-2 md:text-left">
+                            <h4 class="text-2xl font-bold text-text-dark">Q2 2025</h4>
+                            <p class="text-text-dim">Commercial Release Planning</p>
+                        </div>
+                        <div class="w-full md:w-1/2 md:pl-12 md:order-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY / DEMO MEDIA SECTION -->
+    <section id="gallery" class="py-24 bg-secondary-bg px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center text-text-dark">Gallery / Demo Media</h3>
+            <p class="mt-4 text-lg text-text-dim text-center max-w-3xl mx-auto">
+                A visual showcase of our prototype, awards, and the vision for the future.
+            </p>
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="relative group hover-card">
+                    <img src="images/g1.jpg" alt="Prototype Image 1" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Malini V Shankar, I.A.S. (Retd.) Hon'ble Vice Chancellor</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/g2.jpg" alt="Prototype Image 2" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">INMEX SMM 2023 Award Ceremony</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/g3.jpg" alt="Award Ceremony" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Minister of State for Ports, Shipping and Waterways</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/g4.jpg" alt="Award Ceremony" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Prototype model 2023</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/g7.jpg" alt="Award Ceremony" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Live Demonstration with cadets</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/g8.jpg" alt="Award Ceremony" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Felicitation ceremony INMEX SMM 2023</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/b1.png" alt="Award Ceremony" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Testimonials from Cadets</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/b2.png" alt="Award Ceremony" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Testimonials from Cadets</span>
+                    </div>
+                </div>
+                <div class="relative group hover-card">
+                    <img src="images/b3.png" alt="Award Ceremony" class="rounded-xl shadow-lg transform group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute inset-0 bg-primary-bg/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                        <span class="text-text-dark text-xl font-bold">Testimonials from Cadets</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Video Placeholder -->
+            <div class="mt-8 text-center">
+                <div class="relative w-full max-w-3xl mx-auto rounded-xl overflow-hidden shadow-2xl border-4 border-gray-300">
+                    <img src="images/q1.png" alt="Working Demo Video" class="w-full h-auto">
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                        <a href="C:\Users\DELL\helmet\images\ys.mp4" class="text-white bg-accent-blue/80 p-6 rounded-full text-2xl hover:bg-accent-blue transition-colors">
+                            <i class="fas fa-play"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero-bg-animate relative h-screen flex items-center pt-24 md:pt-0 overflow-hidden px-4">
+        <div class="container mx-auto text-center lg:text-left z-10 py-16">
+            <div class="lg:flex lg:items-center lg:justify-between">
+                <div class="lg:w-1/2">
+                    <h1 class="text-5xl sm:text-4xl lg:text-4xl font-extrabold tracking-tight leading-tight text-text-dark drop-shadow-xl hero-glow">
+                         Shipping Towards Automation: 2 Steps Towards Safety
+                    </h1>
+                    <h2 class="mt-4 text-xl sm:text-2xl lg:text-3xl font-light text-text-dim max-w-4xl lg:max-w-none">
+                        “Shipping Towards Automation" is a groundbreaking work exploring the evolving landscape of the maritime industry in the face of automation, AI, and digital transformation”
+                    </h2>
+                    <p class="mt-6 text-lg sm:text-xl text-text-dark max-w-4xl lg:max-w-none">
+                        The book acts as a bridge between maritime tradition and future-forward innovation, reflecting both challenges and opportunities presented by automation in shipping.
+                    </p>
+                    <div class="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
+                        <a href="https://www.amazon.ca/Shipping-Towards-Automation-Steps-Safety/dp/9994989197" class="btn-hover px-6 py-3 border-2 border-accent-blue text-accent-blue font-bold rounded-full shadow-lg hover:bg-accent-blue hover:text-white">
+                            Buy our Book
+                        </a>
+                    </div>
+                </div>
+                <!-- Helmet Image Placeholder -->
+                <div class="lg:w-1/2 mt-16 lg:mt-0 flex justify-center lg:justify-end">
+                    <img src="images/sta.png" alt="3D Rotating Helmet Model" class="mx-auto w-full max-w-md lg:max-w-xl animate-pulse-slow hero-img-glow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM & VISION SECTION -->
+    <section id="team" class="py-24 bg-primary-bg px-4">
+        <div class="container mx-auto">
+            <h3 class="text-4xl font-bold text-center text-text-dark">Team & Vision</h3>
+            <p class="mt-4 text-lg text-text-dim text-center max-w-3xl mx-auto">
+                Presented by: Naavik Maritime Solutions<br>
+                Mission: Transform maritime safety through AI-powered innovation.
+            </p>
+            <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="hover-card bg-secondary-bg p-6 rounded-2xl text-center shadow-xl border border-gray-300">
+                    <img src="images/yash.jpg" alt="Yash Gupta" class="w-32 h-32 rounded-full mx-auto border-4 border-accent-blue">
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Yash Gupta</h4>
+                    <p class="text-sm text-text-dim">Founder | Naavik Maritime Solutions</p>
+                    <p class="mt-2 text-text-dim italic">"Driving safety through scalable hardware systems."</p>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="hover-card bg-secondary-bg p-6 rounded-2xl text-center shadow-xl border border-gray-300">
+                    <img src="images/ty.jpg" alt="Tushant Yadav" class="w-32 h-32 rounded-full mx-auto border-4 border-accent-blue">
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Tushant Yadav</h4>
+                    <p class="text-sm text-text-dim">Smart Safety Helmet | Maritime Technologist & Author</p>
+                    <p class="mt-2 text-text-dim italic">"Redefining maritime careers with innovation and automation."</p>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="hover-card bg-secondary-bg p-6 rounded-2xl text-center shadow-xl border border-gray-300">
+                    <img src="images/skj.jpg" alt="Sanjeev Kumar Jha" class="w-32 h-32 rounded-full mx-auto border-4 border-accent-blue">
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Shubham Kumar Jha</h4>
+                    <p class="text-sm text-text-dim">Research Advisor</p>
+                    <p class="mt-2 text-text-dim italic">"Guiding impact-driven maritime safety research."</p>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="hover-card bg-secondary-bg p-6 rounded-2xl text-center shadow-xl border border-gray-300">
+                    <img src="images/sm.jpg" alt="Dr. S.M. Puranik" class="w-32 h-32 rounded-full mx-auto border-4 border-accent-blue">
+                    <h4 class="mt-4 text-xl font-bold text-text-dark">Dr. S.M. Puranik</h4>
+                    <p class="text-sm text-text-dim">Technical Mentor & Academic Advisor</p>
+                    <p class="mt-2 text-text-dim italic">"Merging academic insight with real-world applications."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQs SECTION -->
+    <section id="faqs" class="py-24 bg-secondary-bg px-4">
+        <div class="container mx-auto max-w-4xl">
+            <h3 class="text-4xl font-bold text-center text-text-dark">Frequently Asked Questions</h3>
+            <div class="mt-12 space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="bg-primary-bg rounded-xl shadow-md overflow-hidden border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center p-6 text-left py-2">
+                        <span class="text-lg font-semibold text-text-dark">How does the helmet transmit data?</span>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content">
+                        <p class="p-6 pt-0 text-text-dim">The helmet uses an integrated ESP8266 module to transmit data via Wi-Fi and Bluetooth to a central system on the ship's bridge or to a connected mobile device.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="bg-primary-bg rounded-xl shadow-md overflow-hidden border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center p-6 text-left py-2">
+                        <span class="text-lg font-semibold text-text-dark">What is the battery backup?</span>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content">
+                        <p class="p-6 pt-0 text-text-dim">The prototype utilizes a Li-Po 9V battery with a backup of 8-10 hours. Future versions will include solar charging capabilities for extended use.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="bg-primary-bg rounded-xl shadow-md overflow-hidden border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center p-6 text-left py-2">
+                        <span class="text-lg font-semibold text-text-dark">Is it waterproof?</span>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content">
+                        <p class="p-6 pt-0 text-text-dim">Yes, the helmet features an IP65 rated waterproof and rugged casing, ensuring durability in all marine environments.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="bg-primary-bg rounded-xl shadow-md overflow-hidden border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center p-6 text-left py-2">
+                        <span class="text-lg font-semibold text-text-dark">How is privacy managed for crew members?</span>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content">
+                        <p class="p-6 pt-0 text-text-dim">The data collected is used solely for safety and operational purposes. Our privacy policy ensures that personal health and location data are secure and accessible only to authorized personnel.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 5 -->
+                <div class="bg-primary-bg rounded-xl shadow-md overflow-hidden border border-gray-300">
+                    <button class="collapsible-toggle w-full flex justify-between items-center p-6 text-left py-2">
+                        <span class="text-lg font-semibold text-text-dark">Can it work without internet?</span>
+                        <i class="fas fa-chevron-down text-accent-blue transition-transform"></i>
+                    </button>
+                    <div class="collapsible-content">
+                        <p class="p-6 pt-0 text-text-dim">The helmet's core safety functions, such as fall detection and local alerts (LEDs/buzzers), operate independently. Wi-Fi and GSM are used for transmitting data and alerts to the bridge or other remote locations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & CTA SECTION -->
+    <section id="contact-cta" class="py-24 bg-primary-bg px-4">
+        <div class="container mx-auto text-center">
+            <h3 class="text-5xl font-bold text-text-dark leading-tight max-w-4xl mx-auto">
+                Ready to transform your maritime safety?
+            </h3>
+            <p class="mt-6 text-xl text-text-dim max-w-3xl mx-auto">
+                Schedule a demo, download our whitepaper, or speak to a technical specialist.
+            </p>
+            <div class="mt-12 flex flex-wrap justify-center gap-4">
+                <a href="#contact-form" class="btn-hover px-8 py-4 bg-accent-blue text-blue-600 font-bold rounded-full shadow-lg">
+                    Schedule a Demo
+                </a>
+                <a href="https://www.jmr.unican.es/jmr/article/view/742" class="btn-hover px-8 py-4 bg-text-dark text-blue-600 font-bold rounded-full shadow-lg">
+                    Download Full Whitepaper
+                </a>
+                <a href="#contact-form" class="btn-hover px-8 py-4 bg-accent-green text-blue-600 font-bold rounded-full shadow-lg">
+                    Speak to a Technical Specialist
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT FORM SECTION -->
+    <section id="contact-form" class="py-24 bg-secondary-bg px-4">
+        <div class="container mx-auto max-w-2xl">
+            <div class="bg-primary-bg p-8 rounded-2xl shadow-xl border border-gray-300">
+                <h4 class="text-2xl font-bold text-text-dark">Contact / Inquiry Form</h4>
+                <p class="mt-2 text-text-dim">Fill out the form below to get in touch with us.</p>
+                <form action="#" class="mt-6 space-y-4 text-left">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-text-dim">Name</label>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full bg-secondary-bg border-gray-300 rounded-md shadow-sm text-text-dark focus:ring-accent-blue focus:border-accent-blue p-2">
+                    </div>
+                    <div>
+                        <label for="company" class="block text-sm font-medium text-text-dim">Company/Organization</label>
+                        <input type="text" id="company" name="company" class="mt-1 block w-full bg-secondary-bg border-gray-300 rounded-md shadow-sm text-text-dark focus:ring-accent-blue focus:border-accent-blue p-2">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-text-dim">Email</label>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full bg-secondary-bg border-gray-300 rounded-md shadow-sm text-text-dark focus:ring-accent-blue focus:border-accent-blue p-2">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-text-dim">Phone</label>
+                        <input type="tel" id="phone" name="phone" class="mt-1 block w-full bg-secondary-bg border-gray-300 rounded-md shadow-sm text-text-dark focus:ring-accent-blue focus:border-accent-blue p-2">
+                    </div>
+                    <div>
+                        <label for="type" class="block text-sm font-medium text-text-dim">Are you a:</label>
+                        <select id="type" name="type" class="mt-1 block w-full bg-secondary-bg border-gray-300 rounded-md shadow-sm text-text-dark focus:ring-accent-blue focus:border-accent-blue p-2">
+                            <option value="">Select an option</option>
+                            <option value="shipping">Shipping Company</option>
+                            <option value="rnd">R&D Org</option>
+                            <option value="csr">CSR Entity</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-text-dim">Message / Purpose</label>
+                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full bg-secondary-bg border-gray-300 rounded-md shadow-sm text-text-dark focus:ring-accent-blue focus:border-accent-blue p-2"></textarea>
+                    </div>
+                    <button type="submit" class="mt-4 w-full px-6 py-3 bg-accent-blue text-blue-600 font-bold rounded-full btn-hover">
+                        Send Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER SECTION -->
+    <footer class="py-12 bg-primary-bg border-t border-gray-300 px-4">
+        <div class="container mx-auto text-center">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <!-- Logo & Tagline -->
+                <div class="text-left mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <img src="images/nms.png" alt="Naavik Logo" class="h-20 w-20 rounded-full border-2 border-accent-blue p-1">
+                        <span class="text-xl font-bold text-accent-blue tracking-wide">Naavik Maritime Solutions</span>
+                    </div>
+                    <p class="mt-2 text-text-dim text-sm italic">“Naavik – Navigating Maritime Innovation”</p>
+                </div>
+                <!-- Links -->
+                <div class="flex flex-wrap justify-center md:justify-end gap-6 text-sm">
+                    <a href="https://naavik.co.in" target="_blank" class="text-text-dim hover:text-text-dark transition-colors">Naavik Main Website</a>
+                    <a href="https://www.jmr.unican.es/jmr/article/view/742" class="text-text-dim hover:text-text-dark transition-colors">Research Paper</a>
+                    <a href="https://www.amazon.ca/Shipping-Towards-Automation-Steps-Safety/dp/9994989197" class="text-text-dim hover:text-text-dark transition-colors">Book</a>
+                    <a href="#" class="text-text-dim hover:text-text-dark transition-colors">Terms of Use</a>
+                    <a href="#" class="text-text-dim hover:text-text-dark transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-text-dim hover:text-text-dark transition-colors">Cookie Preferences</a>
+                </div>
+                <!-- Social Icons -->
+                <div class="flex justify-center md:justify-end space-x-4 mt-6 md:mt-0">
+                    <a href="https://www.linkedin.com/showcase/naavik-maritime-solutions/" aria-label="LinkedIn" class="text-text-dim hover:text-accent-blue transition-colors"><i class="fab fa-linkedin fa-2x"></i></a>
+                    <a href="#" aria-label="YouTube" class="text-text-dim hover:text-red-500 transition-colors"><i class="fab fa-youtube fa-2x"></i></a>
+                    <a href="https://www.instagram.com/naavik_official?igsh=MWV3ZW9qdjlvZW5pcQ==" aria-label="Instagram" class="text-text-dim hover:text-pink-500 transition-colors"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="#" aria-label="X" class="text-text-dim hover:text-text-dark transition-colors"><i class="fab fa-x-twitter fa-2x"></i></a>
+                </div>
+            </div>
+            
+            <p class="mt-8 text-center text-xs text-text-dim">&copy; 2025 Naavik Maritime Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Collapsible Panels and Mobile Navigation -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const collapsibleToggles = document.querySelectorAll('.collapsible-toggle');
+            collapsibleToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const content = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('i');
+                    if (content.classList.contains('open')) {
+                        content.classList.remove('open');
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        // Optional: Close other open panels
+                        // document.querySelectorAll('.collapsible-content.open').forEach(item => item.classList.remove('open'));
+                        // document.querySelectorAll('.collapsible-toggle.active i').forEach(item => item.classList.remove('rotate-180'));
+                        content.classList.add('open');
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+
+            // Mobile Navigation
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+                navMenu.classList.toggle('flex');
+            });
+        });
+    </script>
+</body>
+</html>
